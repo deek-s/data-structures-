@@ -1,0 +1,62 @@
+import java.util.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+public class StaffDetails 
+{
+public static void main(String [] args)
+{
+staff s=new staff();
+teaching t=new teaching();
+technical te=new technical();
+contract c=new contract();
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter number of staff");
+ int n=sc.nextInt();
+ for(int i=1;i<=n;i++)
+ {
+ System.out.println("Enter staffid");
+ s.staffid=sc.next();
+ System.out.println("Enter staffname");
+ s.name=sc.next();
+ System.out.println("Enter staffphone");
+ s.phone=sc.nextLong();
+ System.out.println("Enter staffsalary");
+ s.salary=sc.nextDouble();
+ System.out.println("Enter staffdomain");
+System.out.println("Enter staffpublications");
+ t.publications=sc.next();
+ System.out.println("Enter staffskills");
+ te.skills=sc.next();
+ System.out.println("Enter staffperiod");
+ c.period=sc.nextInt();
+ System.out.println("Enter staffid:"+s.staffid);
+ System.out.println("Enter staffname:"+s.name);
+ System.out.println("Enter staffphone:"+s.phone);
+ System.out.println("Enter staffsalary:"+s.salary);
+ System.out.println("Enter staffdomain:"+t.domain);
+ System.out.println("Enter staffpublications:"+t.publications);
+ System.out.println("Enter staffskills:"+te.skills);
+ System.out.println("Enter staffperiod:"+c.period);
+}
+}
+}
+class staff
+{
+String staffid;
+String name;
+long phone;
+double salary;
+}
+class technical extends staff
+{
+String skills;
+}
+class teaching extends staff
+{
+String domain;
+String publications;
+}
+class contract extends staff
+{
+int period;
+}
