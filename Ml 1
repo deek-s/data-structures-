@@ -1,0 +1,39 @@
+import pandas as pd
+
+df = pd.read_csv("Ex1.csv")
+
+#print(df.to_string())
+
+display(df.iloc[1])
+
+for i in range (30):
+
+if df["Color"].iloc[i] == "White" or "Black" or "BW" :
+
+if df["Sound"].iloc[i] > 79 and df["Sound"].iloc[i] < 101:
+
+if df["Tail Length"].iloc[i] > 0.6:
+
+if df["Height"].iloc[i] > 2.9:
+
+print("Horse")
+
+if df["Color"].iloc[i] == "White" or "Black" or "BW" or "Brown" or "BBrW":
+
+if df["Sound"].iloc[i] < 71:
+
+if df["Tail Length"].iloc[i] < 0.4:
+
+if df["Height"].iloc[i] < 1:
+
+print("Cat")
+
+if df["Color"].iloc[i] == "White" or "Black" or "BW" or "Brown" or "BBrW":
+
+if df["Sound"].iloc[i] > 100:
+
+if df["Tail Length"].iloc[i] > 0.4 and df["Tail Length"].iloc[i] < 0.7:
+
+if df["Height"].iloc[i] > 1 and df["Height"].iloc[i] < 2:
+
+print("Dog")
