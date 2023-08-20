@@ -1,0 +1,23 @@
+import pandas as pd
+
+df = pd.read_csv("Ex1.csv")
+
+from sklearn.model_selection import train_test_split
+
+Features=["Color","Sound","Tail Length","Height"]
+
+X=df.loc[:, Features]
+
+Y=df.loc[:,['Class']]
+
+X_train, X_test, y_train, y_test = train_test_split(X,Y, random_state=104, 
+
+test_size=0.25, shuffle=True)
+
+print(X_train.head())
+
+print(X_test.head())
+
+print(y_train.head())
+
+print(y_test.head(
