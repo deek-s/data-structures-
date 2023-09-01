@@ -6,36 +6,21 @@ from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from sklearn.metrics import confusion_matrix
-
-# Step 2: Load and preprocess the IRIS dataset
 iris = load_iris()
 X = iris.data
 y = iris.target
-
-# One-hot encode the target labels
 encoder = LabelBinarizer()
 y = encoder.fit_transform(y)
-
-# Step 3: Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Step 4: Create the ANN model
 model = Sequential()
-model.add(Dense(10, input_dim=4, activation='relu'))  # Input layer with 4 features
-model.add(Dense(8, activation='relu'))               # Hidden layer 1 with 8 neurons
-model.add(Dense(3, activation='softmax'))            # Output layer with 3 neurons for 3 classes
-
-# Step 5: Compile and train the ANN model on the training data
+model.add(Dense(10, input_dim=4, activation='relu')) 
+model.add(Dense(8, activation='relu'))              
+model.add(Dense(3, activation='softmax'))           
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(X_train, y_train, epochs=100, batch_size=8, verbose=1)
-
-# Step 6: Make predictions on the testing data
 y_pred = model.predict(X_test)
-y_pred_labels = np.argmax(y_pred, axis=1)  # Convert probabilities to class labels
-
-# Step 7: Evaluate the model using a confusion matrix
-y_test_labels = np.argmax(y_test, axis=1)  # Convert one-hot encoded labels to class labels
+y_pred_labels = np.argmax(y_pred, axis=1)  
+y_test_labels = np.argmax(y_test, axis=1)  
 confusion_mat = confusion_matrix(y_test_labels, y_pred_labels)
-
 print("Confusion Matrix:")
 print(confusion_mat)
