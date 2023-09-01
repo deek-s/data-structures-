@@ -1,5 +1,3 @@
-Load libraries
-
 import pandas as pd
 
 from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifier
