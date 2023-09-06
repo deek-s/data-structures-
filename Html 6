@@ -1,0 +1,102 @@
+<html>
+
+<head>
+
+<script>
+
+function registration(){
+
+document.getElementById("fail").innerHTML="";
+
+document.getElementById("success").innerHTML="";
+
+var pwd=document.getElementById("password").value;
+
+var repwd=document.getElementById("repassword").value;
+
+var flag=1;
+
+if(pwd=="" && repwd=="")
+
+{
+
+document.getElementById("fail").innerHTML="Password and Re-type password cannot be
+
+empty";
+
+flag=0;
+
+}
+
+else {
+
+var pwdPat=/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%&*])[A-Za-z0-
+
+9!@#$%&*]{8,}$/;if(pwdPat.test(pwd)==false)
+
+{
+
+document.getElementById("fail").innerHTML="Passwords must contain at 
+
+least eightcharacters,including uppercase,lowercase letters,numbers and special
+
+characters.";
+
+flag=0;
+
+}
+
+}
+
+if(pwd!="" && repwd!="" && pwd != repwd)
+
+{
+
+document.getElementById("fail").innerHTML="Password and Re-Type Password doesn't
+
+match";
+
+flag=0;
+
+}
+
+else if(flag==1)
+
+{
+
+document.getElementById("success").innerHTML="Login Successful";
+
+}
+}
+
+</script>
+
+</head>
+
+<body>
+
+<center>
+
+<h1>Registration Page</h1>
+
+<p>Username <input type="text" id="name" value=""/></p>
+
+<p>
+
+Password <input type="password" id="password" value=""/>
+
+<div id="fail" style="color:red;"></div>
+
+</p>
+
+<p>Re-Type Password <input type="password" id="repassword" value=""/></p>
+
+<input type="button" id="register" onclick="registration()" value="Register"/>
+
+<div id="success" style="color:green;"></div>
+
+</center>
+
+</body>
+
+</html>
