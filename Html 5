@@ -1,0 +1,76 @@
+<html>
+
+<head>
+
+<script>
+
+var bal=1000;
+
+function Withdraw()
+
+{
+
+var amount=document.getElementById("number").value;
+
+bal=bal-Number(amount);
+
+if(bal<500)
+
+{
+
+document.getElementById("amount").innerHTML="Amount less than 500";
+
+}
+
+else
+
+{
+
+document.getElementById("amount").innerHTML=bal;
+
+}
+
+}
+
+function Deposit()
+
+{
+
+var amount=document.getElementById("number").value;
+
+var amt=Number(amount);
+
+bal=bal+amt;
+
+document.getElementById("amount").innerHTML=bal;
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<center>
+
+<h1>Bank</h1>
+
+<h2>Amount withdraw and deposit</h2>
+
+<p>
+Enter the amount:<input type="number" id="number" value=""/>
+
+</p>
+
+<button id="button1" onclick="Withdraw()"> Withdraw</button>
+
+<button id="button2" onclick="Deposit()">Deposit</button>
+
+<p id="amount">1000</p>
+
+</center>
+
+</body>
+
+</html>
