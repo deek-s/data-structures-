@@ -22,3 +22,49 @@ else:
 
 
     
+import os.path
+
+import sys
+
+def display_ first_n_lines (file name, n):
+ try:
+
+with open(file name, 'r') as file: lines= file.readlines()
+
+for line in lines [:n]:
+
+print(line.strip())
+
+except FileNotFoundError:
+
+print("File not found!")
+
+def find_word_frequency(file_name, word):
+
+try:
+
+with open(file name, 'r') as file: content= file.read()
+
+word_count = content.lower().count (word.lower())
+
+print (f"The word (word)' appears {word_count}times in the
+
+file.")
+
+except FileNotFoundError:
+
+print("File not found!")
+
+if __name__="__main__":
+
+file name = input("Enter the file name):
+If not os.path.exists(filename):
+
+print("file not exist")
+
+sys.exit(0)
+
+n=int(input("Enter the value of N for displaying the first N lines: ")) print (f"\nDisplaying the first (n) lines of the file '{file name:'}:"))
+display first_n_lines(file_name, n ) search_word= input("\nEnter the word to find its frequency in the file:")
+
+find_ word _frequency(file_name, search_word)
