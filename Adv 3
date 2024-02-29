@@ -1,28 +1,72 @@
-import java.util.Scanner;
-public class Student {
-public Student(String stuUSN,String stuName,String stuBranch,String stuPhone)
+import java.util.*;
+public class ArrayL
 {
-System.out.println("Student USN is:"+stuUSN);
-System.out.println("Student Name is:"+stuName);
-System.out.println("Student Branch is:"+stuBranch);
-System.out.println("Student Phone number is:"+stuPhone);
-}
-public static void main(String[] args)
+ArrayList<String> list=new ArrayList<String>(); //Creating arraylist
+public void arraydisplay()
 {
-Scanner readInput = new Scanner(System.in);
-System.out.println("Enter number of student objects to create");
-int numberOfStudents = readInput.nextInt();
-for(int i =1;i<=numberOfStudents;i++)
+list.add("CSE");//Adding object in arraylist
+list.add("ISE");
+list.add("ME");
+System.out.println("ArrayList element are");
+System.out.println(list);
+System.out.println("");
+}
+public void appendatend()
 {
-System.out.println("Enter Student USN");
-String usn = readInput.next();
-System.out.println("Enter Student Name");
-String name = readInput.next();
-System.out.println("Enter Student Branch");
-String branch = readInput.next();
-System.out.println("Enter Student Phone");
-String phone = readInput.next();
-new Student(usn, name,branch, phone);
+System.out.println("Enter the element to append at end");
+Scanner scob1=new Scanner(System.in);
+String ele=scob1.next();
+list.add(ele);
+System.out.println(list);
+System.out.println("");
+}
+public void insertatpos()
+{
+System.out.println("Enter the position and element to insert");
+Scanner scob1=new Scanner(System.in);
+int posind=scob1.nextInt();
+String ele=scob1.next();
+list.add(posind,ele);
+System.out.println(list);
+System.out.println("");
+}
+public void searchele()
+{
+System.out.println("Enter the Array element to search");
+Scanner scobj=new Scanner(System.in);
+String arele=scobj.next();
+int in=list.indexOf(arele);
+if(in==-1)
+{
+System.out.println("Element not found");
+}
+else
+{
+System.out.println("Element found at "+in);
 }
 }
-
+void print()
+{
+System.out.println("Enter the starting charecter to print strings");
+Scanner nip=new Scanner(System.in);
+char inputc=nip.next().charAt(0);
+String strc=Character.toString(inputc);
+System.out.println("String starting with character "+strc);
+for(int i=0;i<list.size();i++)
+{
+if(list.get(i).startsWith(strc))
+{
+System.out.println(list.get(i));
+}
+}
+}
+public static void main(String args[])
+{
+ArrayL obj=new ArrayL();
+obj.arraydisplay();
+obj.appendatend();
+obj.insertatpos();
+obj.searchele();
+obj.print();
+}
+}
