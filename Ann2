@@ -1,0 +1,152 @@
+a)
+Sigmoid activation code 
+
+import numpy as np
+
+from matplotlib import pyplot as plt
+
+# Sigmoidal
+
+def sig(x):
+
+ return 1/(1+np.exp(-x))
+
+# Sigmoidal derivative
+
+def dsig(x):
+
+ return sig(x) * (1- sig(x))
+
+# Generating data to plot
+
+x_data = np.linspace(-6,6,100)
+
+y_data = sig(x_data)
+
+dy_data = dsig(x_data)
+
+# Plotting
+
+plt.plot(x_data, y_data, x_data, dy_data)
+
+plt.title('Sigmoid Function & Derivative')
+
+plt.legend(['f(x)','f\'(x)'])
+
+plt.grid()
+
+plt.show()
+
+
+
+
+b)import numpy as np
+
+import matplotlib.pyplot as plt
+
+# Hyperbolic Tangent (htan) Activation Function
+
+def htan(x):
+
+ return (np.exp(x) - np.exp(-x))/(np.exp(x) + np.exp(-x))
+
+# htan derivative
+
+def der_htan(x):
+
+ return 1 - htan(x) * htan(x)
+
+# Generating data for Graph
+
+x_data = np.linspace(-6,6,100)
+
+y_data = htan(x_data)
+
+dy_data = der_htan(x_data)
+
+# Graph
+
+plt.plot(x_data, y_data, x_data, dy_data)
+
+plt.title('htan Activation Function & Derivative')
+
+plt.legend(['htan','der_htan'])
+
+plt.grid()
+
+plt.show()
+
+
+
+
+
+
+c)import numpy as np
+
+import matplotlib.pyplot as plt
+
+# Rectified Linear Unit (ReLU)
+
+def ReLU(x):
+
+ data = [max(0,value) for value in x]
+
+ return np.array(data, dtype=float)
+
+# Derivative for ReLU
+
+def der_ReLU(x):
+
+ data = [1 if value>0 else 0 for value in x]
+
+ return np.array(data, dtype=float)
+
+# Generating data for Graph
+plt.title('ReLU Activation Function & Derivative')
+
+plt.legend(['ReLU','der_ReLU'])
+
+plt.grid()
+
+plt.show()
+
+
+d)
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+# Leaky Rectified Linear Unit (leaky ReLU) Activation Function
+
+def leaky_ReLU(x):
+
+ data = [max(0.05*value,value) for value in x]
+
+ return np.array(data, dtype=float)
+
+# Derivative for leaky ReLU 
+
+def der_leaky_ReLU(x):
+
+ data = [1 if value>0 else 0.05 for value in x]
+
+ return np.array(data, dtype=float)
+
+# Generating data For Graph
+
+x_data = np.linspace(-10,10,100)
+
+y_data = leaky_ReLU(x_data)
+
+dy_data = der_leaky_ReLU(x_data)
+
+# Graph
+plt.plot(x_data, y_data, x_data, dy_data)
+
+plt.title('leaky ReLU Activation Function & Derivative')
+
+plt.legend(['leaky_ReLU','der_leaky_ReLU'])
+
+plt.grid()
+
+plt.show()
