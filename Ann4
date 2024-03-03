@@ -1,3 +1,22 @@
+from sklearn import datasets
+import pandas as pd			
+import numpy as np
+iris = datasets.load_iris() #Loading the dataset
+iris.keys()
+iris = pd.DataFrame(
+    data= np.c_[iris['data'], iris['target']],
+    columns= iris['feature_names'] + ['target']
+    )
+iris.head(10)
+species = []
 
-Enter a Roman Number : IX
-9
+
+for i in range(len(iris['target'])):
+    if iris['target'][i] == 0:
+        species.append("setosa")
+    elif iris['target'][i] == 1:
+        species.append('versicolor')
+    else:
+        species.append('virginica')
+iris['species'] = species
+iris.groupby('species').size()
