@@ -1,0 +1,140 @@
+
+.Java File
+package com.example.counter;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    Button btnStart, btnStop;
+    TextView counterValue;
+    public int counter = 0;
+    public Boolean running = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnStart = (Button) findViewById(R.id.btn_start);
+        btnStop = (Button) findViewById(R.id.btn_stop);
+        counterValue = (TextView) findViewById(R.id.txt_value);
+    }
+
+    public void buttonstart(View view) {
+        if (view.equals(btnStart)) {
+            counterStart();
+        }
+    }
+
+    private void counterStop() {
+        this.running = false;
+        btnStart.setEnabled(true);
+        btnStop.setEnabled(false);
+    }
+
+    private void counterStart() {
+        counter = 0;
+        running = true;
+        System.out.println("Start->" + Thread.currentThread().getName());
+        new MyCounter().start();
+        btnStart.setEnabled(false);
+        btnStop.setEnabled(true);
+    }
+
+    public void buttonstop(View view) {
+        if (view.equals(btnStop)) {
+            counterStop();
+        }
+    }
+
+    Handler handler = new Handler(Looper.getMainLooper()) {
+        public void handleMessage(Message mes) {
+            counterValue.setText(String.valueOf(mes.what));
+        }
+    };
+
+    class MyCounter extends Thread {
+        public void run() {
+            System.out.println("mycounter->" + Thread.currentThread().getName());
+            while (running) {
+                counter++;
+                handler.sendEmptyMessage(counter);
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                }
+            }
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+.XML
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Counter stop"
+        android:onClick="buttonstop"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.418"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/txt_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Counter status"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Counter Start"
+        android:onClick="buttonstart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281"
+        tools:ignore="OnClick" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
