@@ -1,0 +1,38 @@
+ import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
+#for data preprocessing
+from sklearn.decomposition import PCA
+
+#for modeling
+from sklearn.neighbors import LocalOutlierFactor
+from sklearn.ensemble import IsolationForest
+
+#filter warnings
+import warnings
+warnings.filterwarnings("ignore")
+
+import os
+print(os.listdir("../input"))
+
+# Any results you write to the current directory are saved as output.
+['creditcard.csv']
+Exploratory Data Analysis
+df = pd.read_csv("../input/creditcard.csv")
+df.head()
+ns.countplot(df.Class)
+plt.show()
+print(df.Class.value_counts())
+
+timedelta = pd.to_timedelta(df['Time'], unit='s')
+df['Time_hour'] = (timedelta.dt.components.hours).astype(int)
+
+plt.figure(figsize=(12,5))
+sns.distplot(df[df['Class'] == 0]["Time_hour"], color='g')
+sns.distplot(df[df['Class'] == 1]["Time_hour"], color='r')
+plt.title('Fraud and Normal Transactions by Hours', fontsize=17)
+plt.xlim([-1,25])
+plt.show()
